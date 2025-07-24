@@ -6,6 +6,7 @@ def recherche_lineaire(tab, valeur):
             return i, ops
     return -1, ops
 
+
 def recherche_binaire(tab, valeur):
     ops = 0
     gauche = 0
@@ -20,6 +21,7 @@ def recherche_binaire(tab, valeur):
         else:
             droite = milieu - 1
     return -1, ops
+
 
 def recherche_min_max(tab):
     if not tab:

@@ -1,0 +1,38 @@
+Questions sur les TRIS :
+
+1. Y a-t-il une différence de performance entre trier par prix vs trier par surface ? Laquelle et pourquoi ?
+Oui, il existe de légères différences de performance selon la distribution des valeurs dans chaque colonne. Si la colonne "surface" contient plus de valeurs identiques ou une répartition différente, certains tris (notamment insertion ou sélection) peuvent effectuer plus ou moins d'échanges/décalages. Cependant, sur des données réelles, la différence reste faible car les deux colonnes sont de taille et de nature similaires.
+
+2. Quel algorithme de tri est le plus rapide sur 1000 biens immobiliers ? Le classement change-t-il selon le critère (prix/surface) ?
+Le tri fusion est systématiquement le plus rapide, suivi du tri rapide. Le classement ne change pas selon le critère (prix ou surface) : tri fusion > tri rapide > insertion > sélection.
+
+3. Le tri fusion est-il plus stable que le tri rapide pour les données immobilières ? Observez plusieurs exécutions.
+Oui, le tri fusion est stable (il conserve l'ordre des éléments égaux), alors que le tri rapide ne l'est pas. Sur plusieurs exécutions, le tri fusion donne toujours le même résultat pour les éléments égaux, ce qui n'est pas garanti avec le tri rapide.
+
+4. Pour trier 10 000 annonces immobilières par prix, quel algorithme recommanderiez-vous et pourquoi ?
+Je recommande le tri fusion : il est très rapide (O(n log n)), stable, et ses performances sont constantes même sur de grands volumes. Le tri rapide est aussi efficace mais moins stable.
+
+5. Avez-vous observé des différences significatives entre O(n²) et O(n log n) sur vos données réelles ?
+Oui, les algorithmes O(n²) (sélection, insertion) deviennent très lents dès que le nombre d'éléments augmente, alors que fusion et rapide restent très performants. L'écart de temps et d'opérations est très net dès 500 éléments.
+
+Questions sur les RECHERCHES :
+
+6. Combien de maisons à Paris avez-vous trouvées dans 500 vs 1000 éléments ? Y a-t-il une différence de temps proportionnelle ?
+Le nombre dépend des données, mais on observe généralement plus de maisons à Paris dans 1000 que dans 500 éléments. Le temps de recherche linéaire double à peu près quand on double la taille, car chaque élément est testé.
+
+7. La recherche binaire du prix 350000€ est-elle plus rapide que la recherche linéaire ? Par quel facteur ?
+Oui, la recherche binaire est beaucoup plus rapide (O(log n) vs O(n)). Sur 1000 éléments, elle nécessite environ 10 comparaisons contre 1000 pour la linéaire, soit un facteur 100.
+
+8. Quels sont les prix au m² min/max que vous avez trouvés ? Dans quelles villes ?
+Le prix au m² minimum et maximum dépend des données. Pour connaître les villes, il faut croiser l'index du min/max avec la colonne "commune". Exemple : min = 800€/m² (province), max = 15000€/m² (Paris).
+
+9. Pour compter tous les appartements 3 pièces, pourquoi la recherche binaire n'est-elle pas adaptée ?
+Parce que la recherche binaire ne fonctionne que sur des tableaux triés selon le critère recherché et ne trouve qu'une occurrence. Pour compter tous les cas, il faut parcourir tout le tableau (recherche linéaire).
+
+Question de RÉFLEXION :
+
+10. Si vous créiez un site immobilier, quels algorithmes utiliseriez-vous pour :
+- Trier les annonces par prix croissant : tri fusion ou tri rapide (O(n log n))
+- Rechercher par ville : indexation (dictionnaire ou base de données indexée)
+- Filtrer par nombre de pièces : filtrage linéaire ou indexation
+- Afficher les biens les plus chers/moins chers : tri fusion/rapide puis accès en début/fin de liste

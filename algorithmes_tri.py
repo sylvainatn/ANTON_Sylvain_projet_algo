@@ -14,6 +14,7 @@ def tri_selection(tab):
             echanges += 1
     return arr, comparaisons, echanges
 
+
 def tri_insertion(tab):
     n = len(tab)
     comparaisons = 0
@@ -34,6 +35,7 @@ def tri_insertion(tab):
         decalages += 1
     return arr, comparaisons, decalages
 
+
 def tri_fusion(tab):
     arr = tab.copy()
     comparaisons = [0]
@@ -51,6 +53,7 @@ def tri_fusion(tab):
         result.extend(left[i:])
         result.extend(right[j:])
         return result
+    
     def merge_sort(lst):
         if len(lst) <= 1:
             return lst
@@ -60,6 +63,7 @@ def tri_fusion(tab):
         return fusion(left, right)
     sorted_arr = merge_sort(arr)
     return sorted_arr, comparaisons[0]
+
 
 def tri_rapide(tab):
     arr = tab.copy()
