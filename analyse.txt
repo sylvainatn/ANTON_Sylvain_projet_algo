@@ -1,38 +1,42 @@
 Questions sur les TRIS :
 
-1. Y a-t-il une différence de performance entre trier par prix vs trier par surface ? Laquelle et pourquoi ?
-Oui, il existe de légères différences de performance selon la distribution des valeurs dans chaque colonne. Si la colonne "surface" contient plus de valeurs identiques ou une répartition différente, certains tris (notamment insertion ou sélection) peuvent effectuer plus ou moins d'échanges/décalages. Cependant, sur des données réelles, la différence reste faible car les deux colonnes sont de taille et de nature similaires.
+1. Est-ce qu’il y a une différence entre trier par prix ou par surface ?
+Oui, un peu. Si beaucoup de surfaces sont pareilles, ça peut rendre le tri un peu plus lent. Mais dans notre cas, les colonnes "prix" et "surface" sont assez semblables, donc la différence est faible.
 
-2. Quel algorithme de tri est le plus rapide sur 1000 biens immobiliers ? Le classement change-t-il selon le critère (prix/surface) ?
-Le tri fusion est systématiquement le plus rapide, suivi du tri rapide. Le classement ne change pas selon le critère (prix ou surface) : tri fusion > tri rapide > insertion > sélection.
+2. Quel tri est le plus rapide sur 1000 biens ? Est-ce que ça change pour le prix ou la surface ?
+Le tri fusion est le plus rapide. Ensuite vient le tri rapide, puis insertion, et enfin sélection qui est le plus lent.
+Cela ne change pas, que ce soit pour le tri par prix ou par surface.
 
-3. Le tri fusion est-il plus stable que le tri rapide pour les données immobilières ? Observez plusieurs exécutions.
-Oui, le tri fusion est stable (il conserve l'ordre des éléments égaux), alors que le tri rapide ne l'est pas. Sur plusieurs exécutions, le tri fusion donne toujours le même résultat pour les éléments égaux, ce qui n'est pas garanti avec le tri rapide.
+3. Est-ce que le tri fusion est plus stable que le tri rapide ?
+Oui. Le tri fusion garde l’ordre des éléments égaux. Le tri rapide peut changer cet ordre. Donc le tri fusion est plus fiable pour ce type de données.
 
-4. Pour trier 10 000 annonces immobilières par prix, quel algorithme recommanderiez-vous et pourquoi ?
-Je recommande le tri fusion : il est très rapide (O(n log n)), stable, et ses performances sont constantes même sur de grands volumes. Le tri rapide est aussi efficace mais moins stable.
+4. Pour trier 10 000 annonces, quel tri faut-il choisir ?
+Il faut choisir le tri fusion. Il est très rapide, stable, et fonctionne bien même avec beaucoup d’annonces.
 
-5. Avez-vous observé des différences significatives entre O(n²) et O(n log n) sur vos données réelles ?
-Oui, les algorithmes O(n²) (sélection, insertion) deviennent très lents dès que le nombre d'éléments augmente, alors que fusion et rapide restent très performants. L'écart de temps et d'opérations est très net dès 500 éléments.
+5. Est-ce qu’on voit une vraie différence entre les tris lents et rapides ?
+Oui. Les tris lents comme insertion ou sélection deviennent très longs quand on a beaucoup d’éléments. Les tris comme fusion ou rapide restent efficaces.
 
-Questions sur les RECHERCHES :
 
-6. Combien de maisons à Paris avez-vous trouvées dans 500 vs 1000 éléments ? Y a-t-il une différence de temps proportionnelle ?
-Le nombre dépend des données, mais on observe généralement plus de maisons à Paris dans 1000 que dans 500 éléments. Le temps de recherche linéaire double à peu près quand on double la taille, car chaque élément est testé.
+Questions sur les RECHERCHES : 
 
-7. La recherche binaire du prix 350000€ est-elle plus rapide que la recherche linéaire ? Par quel facteur ?
-Oui, la recherche binaire est beaucoup plus rapide (O(log n) vs O(n)). Sur 1000 éléments, elle nécessite environ 10 comparaisons contre 1000 pour la linéaire, soit un facteur 100.
+6. Combien de maisons à Paris avez-vous trouvées dans 500 et 1000 annonces ? Et le temps ?
+On trouve plus de maisons dans 1000 que dans 500 annonces. Le temps de recherche augmente quand on teste plus de données, car on regarde chaque ligne une par une.
 
-8. Quels sont les prix au m² min/max que vous avez trouvés ? Dans quelles villes ?
-Le prix au m² minimum et maximum dépend des données. Pour connaître les villes, il faut croiser l'index du min/max avec la colonne "commune". Exemple : min = 800€/m² (province), max = 15000€/m² (Paris).
+7. La recherche binaire (prix = 350000€) est-elle plus rapide que la recherche normale ?
+Oui, beaucoup plus rapide. La recherche normale fait 1000 tests sur 1000 éléments. La recherche binaire en fait environ 10. Mais elle marche seulement si la liste est triée.
 
-9. Pour compter tous les appartements 3 pièces, pourquoi la recherche binaire n'est-elle pas adaptée ?
-Parce que la recherche binaire ne fonctionne que sur des tableaux triés selon le critère recherché et ne trouve qu'une occurrence. Pour compter tous les cas, il faut parcourir tout le tableau (recherche linéaire).
+8. Quels sont les prix au m² les plus bas et les plus hauts ? Et dans quelles villes ?
+Le prix le plus bas est souvent dans une petite ville, et le plus haut à Paris. Pour savoir où, il faut regarder la colonne "commune".
 
-Question de RÉFLEXION :
+9. Pourquoi on ne peut pas utiliser la recherche binaire pour les appartements 3 pièces ?
+Parce que la recherche binaire trouve une seule valeur, et seulement si la liste est triée. Ici, on veut compter tous les appartements 3 pièces, donc il faut tout lire ligne par ligne.
 
-10. Si vous créiez un site immobilier, quels algorithmes utiliseriez-vous pour :
-- Trier les annonces par prix croissant : tri fusion ou tri rapide (O(n log n))
-- Rechercher par ville : indexation (dictionnaire ou base de données indexée)
-- Filtrer par nombre de pièces : filtrage linéaire ou indexation
-- Afficher les biens les plus chers/moins chers : tri fusion/rapide puis accès en début/fin de liste
+10. Si tu faisais un site immobilier, quels algorithmes utiliser ?
+
+Pour trier par prix : je choisirais le tri fusion ou le tri rapide.
+
+Pour rechercher par ville : j’utiliserais un index ou une base de données.
+
+Pour filtrer par nombre de pièces : je ferais une recherche simple ou un filtre rapide.
+
+Pour voir les biens les plus chers ou les moins chers : je trie la liste, puis je prends les premiers ou les derniers.

@@ -4,13 +4,6 @@ from algorithmes_tri import tri_selection, tri_insertion, tri_fusion, tri_rapide
 from algorithmes_recherche import recherche_lineaire, recherche_binaire, recherche_min_max
 
 
-
-def recherche_maisons_paris(communes, types, taille):
-    nb_trouvees = 0
-    comparaisons = 0
-    t0 = time.time()
-
-
 # Fonctions de recherche spécifiques
 def recherche_maisons_paris(communes, types, taille):
     nb_trouvees = 0
